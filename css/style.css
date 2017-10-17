@@ -7,8 +7,6 @@ body{
 	font-family:"Roboto", arial, verdana, sans-serif;
 }
 
-
-
 .padbox{
 	padding:15px;
 }
@@ -89,12 +87,12 @@ form{
 	padding:10px;
 	color:#555;
 	font-size:105%;
-	cursor:pointer;
 }
 
 .control{
 	display:inline-block;
 	padding-right:10px;
+	cursor:pointer;
 }
 
 .green{
@@ -107,4 +105,15 @@ form{
 
 .grey{
 	color:#cdcdcd;
+}
+
+@media only screen and (max-width: 600px) {
+	body{
+		font-size:13px;
+	}
+	.add-ticker-form{
+		padding:15px;
+		margin:0 auto;
+		width:80vw;
+	}
 }
