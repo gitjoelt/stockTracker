@@ -20,7 +20,7 @@ npm start
 
 This will create a dev server on port 8000 (http://localhost:8000)
 
-To build a final copy run
+To build the application type
 ```
 npm run build
 ```
