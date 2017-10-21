@@ -11,11 +11,37 @@ class AddTickerForm extends React.Component {
 			tickerTextbox: { value: '', disabled: false },
 			tickers: [],
 			errorClass: 'errorHeader hide',
-			buttonText: 'Add Ticker'
+			buttonText: 'Add Ticker',
+			exampleTickers: ['WEED', 'AMD:US', 'LVI:CNX', 'RHT'],
+			exampleTickerIndex: 0
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	componentDidMount(){
+		this.interval = setInterval(() => {
+			this.setState({
+				exampleTickerIndex: this.refreshExampleTickers(this.state.exampleTickerIndex)
+			});
+		}, 3000);
+	}
+
+	componentWillUnmount(){
+		clearInterval(this.interval);
+	}
+
+	refreshExampleTickers(index){
+		
+		const length = this.state.exampleTickers.length - 1;
+		if(index === length){
+			clearInterval(this.interval);
+		} else {
+			index += 1;
+		}
+
+		return index;
 	}
 
 	isValidTicker(ticker, callback){
@@ -82,10 +108,18 @@ class AddTickerForm extends React.Component {
 						<input 
 						className="tickerTextbox" 
 						type="text" 
-						placeholder="Enter a ticker (TSX Only)"
+						placeholder={'Enter a ticker (ex. ' + this.state.exampleTickers[this.state.exampleTickerIndex] + ')'}
 						value={this.state.tickerTextbox.value} 
 						onChange={this.handleChange} 
 						disabled={this.state.tickerTextbox.disabled} />
+						<div className="infobox">
+						<strong><FontAwesome name='info-circle' /> Formatting Help</strong>
+							<ul>
+								<li>US Stocks must end with <strong>:US</strong> (ex. AMD:US / AAPL:US)</li>
+								<li>CSE Stocks must end with <strong>:CNX</strong> (ex. LVI:CNX)</li>
+								<li>Only companies listed on the TSXV are real time quotes</li>
+							</ul>
+						</div>
 						<input type="submit" className="tickerSubmit" value={this.state.buttonText} />
 						</form>
 					</div>

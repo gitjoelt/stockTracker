@@ -23,7 +23,7 @@ class QuoteBox extends React.Component {
 
 			 	if(response.data.price){
 				 	this.setState({
-				 		price: response.data.price,
+				 		price: '$' + response.data.price,
 				 		pointgl: response.data.pointgl,
 				 		percentgl: response.data.percentgl,
 				 		loadMsg: '',
@@ -102,7 +102,7 @@ class QuoteBox extends React.Component {
 					</span>
 					&nbsp;{this.props.ticker}&nbsp;
 					<span className={this.setColor(this.state.pointgl)}>
-					${this.state.price} ({this.state.percentgl}%)
+					{this.state.price} ({this.state.percentgl}%)
 					</span>
 					</h3>
 				</div>

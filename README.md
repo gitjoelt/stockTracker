@@ -4,7 +4,7 @@ Enter stocks and track the price in realtime. Prices are updated every minute or
 
 ## Market Support
 
-Currently this app is only able to track TSX venture stocks
+Currently this app is only able to track TSX venture stocks in real time.
 
 ## Getting started
 Run 

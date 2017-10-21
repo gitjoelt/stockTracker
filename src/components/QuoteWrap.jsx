@@ -12,7 +12,7 @@ class QuoteWrap extends React.Component {
 
 	deleteQuoteBox = (tickerIndex) => {
 		let tempTickers = this.state.tickers;
-		tempTickers.splice(tickerIndex, 1);
+		delete tempTickers[tickerIndex];
 		this.setState({
 			tickers: tempTickers
 		});
