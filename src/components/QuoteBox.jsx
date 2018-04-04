@@ -9,6 +9,7 @@ class QuoteBox extends React.Component {
 		this.state = {
 			price: '',
 			pointgl: '',
+			volume: '',
 			loadMsg: 'Retrieving latest price',
 			loadClass: { name: 'refresh', spin: true }
 		}
@@ -24,6 +25,7 @@ class QuoteBox extends React.Component {
 			 	if(response.data.price){
 				 	this.setState({
 				 		price: '$' + response.data.price,
+				 		volume: response.data.volume,
 				 		pointgl: response.data.pointgl,
 				 		percentgl: response.data.percentgl,
 				 		loadMsg: '',
@@ -32,6 +34,7 @@ class QuoteBox extends React.Component {
 			 	} else {
 			 		this.setState({
 				 		price: 'N/A',
+				 		volume: 'N/A',
 				 		pointgl: 0,
 				 		percentgl: 0,
 				 		loadMsg: '',
@@ -106,12 +109,20 @@ class QuoteBox extends React.Component {
 					</span>
 					</h3>
 				</div>
+				<div className="quoteBoxVol">
+				{'Volume: '}<span className="volume">{this.state.volume}</span>
+				</div>
 				<div className="quoteBoxTools">
 					<div className="control" onClick={()=> this.refreshQuotes(this.props.ticker)}>
 						<FontAwesome name={this.state.loadClass.name} spin={this.state.loadClass.spin} /> {this.state.loadMsg}
 					</div>
 					<div className="control" onClick={()=> this.props.getTickerIndex(this.props.index)}>
 						<FontAwesome name='trash' />
+					</div>
+					<div className="control">
+					<a href={`https://web.tmxmoney.com/quote.php?qm_symbol=${this.props.ticker}`} target="_blank">
+						<FontAwesome name='external-link' />
+					</a>
 					</div>
 				</div>
 			</div>
