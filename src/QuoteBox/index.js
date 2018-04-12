@@ -1,9 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import FontAwesome from 'react-fontawesome';
 
 class QuoteBox extends React.Component {
-	
+
 	constructor(props){
 		super(props);
 		this.state = {
@@ -11,9 +10,10 @@ class QuoteBox extends React.Component {
 			pointgl: '',
 			volume: '',
 			loadMsg: 'Retrieving latest price',
-			loadClass: { name: 'refresh', spin: true }
+			loadClass: 'fa fa-refresh fa-spin'
 		}
 	}
+
 
 	refreshQuotes(ticker){
 
@@ -29,7 +29,7 @@ class QuoteBox extends React.Component {
 				 		pointgl: response.data.pointgl,
 				 		percentgl: response.data.percentgl,
 				 		loadMsg: '',
-				 		loadClass: { name: 'refresh', spin: false }
+				 		loadClass: 'fa fa-refresh'
 				 	});
 			 	} else {
 			 		this.setState({
@@ -38,7 +38,7 @@ class QuoteBox extends React.Component {
 				 		pointgl: 0,
 				 		percentgl: 0,
 				 		loadMsg: '',
-				 		loadClass: { name: 'refresh', spin: false }
+				 		loadClass: 'fa fa-refresh'
 				 	});
 			 	}
 
@@ -47,8 +47,8 @@ class QuoteBox extends React.Component {
 			 	console.log(error);
 			 	this.setState({
 			 		price: '???',
-			 		loadMsg: "An error occured:" + errors,
-			 		loadClass: { name: 'refresh', spin: false }
+			 		loadMsg: "An error occured:" + error,
+			 		loadClass: 'fa fa-refresh'
 			 	});
 			 });
 	}
@@ -68,15 +68,15 @@ class QuoteBox extends React.Component {
 	setLoadMsg(){
 		this.setState({
 			loadMsg: '',
-			loadClass: { name: 'refresh', spin: true }
+			loadClass: 'fa fa-refresh fa-spin'
 		});
 	}
 
 	setColor(pointgl){
 		if(pointgl > 0){
 			return "green";
-		} else if(pointgl === 0 || !pointgl) { 
-			return "grey"; 
+		} else if(pointgl === 0 || !pointgl) {
+			return "grey";
 		} else {
 			return "red";
 		}
@@ -84,12 +84,11 @@ class QuoteBox extends React.Component {
 
 	setArrow(pointgl){
 		if(pointgl > 0){
-			return "arrow-up";
-		} else if(pointgl === 0) {
-			return '';
-		} else { 
-			return "arrow-down";
+			return "fa fa-arrow-up";
+		} else if(pointgl < 0) {
+			return "fa fa-arrow-down";
 		}
+		return '';
 	}
 
 
@@ -101,7 +100,7 @@ class QuoteBox extends React.Component {
 				<div className="quoteBoxHead">
 					<h3>
 					<span className={this.setColor(this.state.pointgl)}>
-					<FontAwesome name={this.setArrow(this.state.pointgl)} />
+						<i className={this.setArrow(this.state.pointgl)}></i>
 					</span>
 					&nbsp;{this.props.ticker}&nbsp;
 					<span className={this.setColor(this.state.pointgl)}>
@@ -114,15 +113,16 @@ class QuoteBox extends React.Component {
 				</div>
 				<div className="quoteBoxTools">
 					<div className="control" onClick={()=> this.refreshQuotes(this.props.ticker)}>
-						<FontAwesome name={this.state.loadClass.name} spin={this.state.loadClass.spin} /> {this.state.loadMsg}
+						<i className={this.state.loadClass}></i> {this.state.loadMsg}
 					</div>
-					<div className="control" onClick={()=> this.props.getTickerIndex(this.props.index)}>
-						<FontAwesome name='trash' />
+					<div className="control"
+						onClick={()=> this.props.getTickerIndex(this.props.index)}>
+						<i className="fa fa-trash"></i>
 					</div>
 					<div className="control">
-					<a href={`https://web.tmxmoney.com/quote.php?qm_symbol=${this.props.ticker}`} target="_blank">
-						<FontAwesome name='external-link' />
-					</a>
+						<a href={`https://web.tmxmoney.com/quote.php?qm_symbol=${this.props.ticker}`} target="_blank">
+							<i className="fa fa-external-link"></i>
+						</a>
 					</div>
 				</div>
 			</div>

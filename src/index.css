@@ -46,16 +46,24 @@ form{
 	margin:0;
 	padding:0;
 }
-.tickerTextBox{
-	width:100%;
+
+.tickerInput{
+  display:block;
+  box-sizing: border-box;
+  width:100%;
 	padding:20px;
 	font-size:150%;
 	background:#e3e3e3;
 	border:1px solid #ccc;
 	font-weight:100;
 	color:#333;
-	display:block;
 	margin-bottom:15px;
+}
+
+.tickerInputLoading{
+  background:#ffb65f;
+  color:white;
+  border:1px solid #ffa234;
 }
 
 .tickerSubmit{
@@ -92,7 +100,7 @@ form{
 	background:#515151;
 	padding:10px;
 	color:#CCC;
-	
+
 	font-size:110%;
 }
 

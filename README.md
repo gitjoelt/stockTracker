@@ -7,7 +7,7 @@ Enter stocks and track the price in realtime. Prices are updated every minute or
 Currently this app is only able to track TSX venture stocks in real time.
 
 ## Getting started
-Run 
+Run
 ```
 npm install
 ```
@@ -18,10 +18,9 @@ Then run
 npm start
 ```
 
-This will create a dev server on port 8000 (http://localhost:8000)
+This will create a dev server on port 3000 (http://localhost:3000)
 
 To build the application type
 ```
 npm run build
 ```
- 
