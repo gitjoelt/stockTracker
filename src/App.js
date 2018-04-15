@@ -135,26 +135,37 @@ class App extends Component {
 					<i className="fa fa-warning"></i> {"Couldn't find ticker"}
 				</div>
 				<div className="header">
-					<div className="add-ticker-form">
-						<form onSubmit={this.handleSubmit}>
-						<input
-						className={this.state.tickerTextbox.style}
-						type="text"
-						placeholder={'Enter a ticker (ex. ' + this.state.exampleTickers[this.state.exampleTickerIndex] + ')'}
-						value={this.state.tickerTextbox.value}
-						onChange={this.handleChange}
-						readOnly={this.state.tickerTextbox.readOnly} />
-						<div className="infobox">
-						<strong>Formatting Help</strong>
-							<ul>
-								<li>US Stocks must end with <strong>:US</strong> (ex. AMD:US / AAPL:US)</li>
-								<li>CSE Stocks must end with <strong>:CNX</strong> (ex. LVI:CNX)</li>
-								<li>Only companies listed on the TSXV are real time quotes</li>
-							</ul>
-						</div>
-						<input type="submit" className="tickerSubmit" value={this.state.buttonText} />
-						</form>
-					</div>
+          <div className="input-area">
+            <div className="pure-g">
+              <div className="pure-u-1 pure-u-sm-1-2">
+                <div className="padbox-left">
+      						<form onSubmit={this.handleSubmit}>
+      						<input
+      						className={this.state.tickerTextbox.style}
+      						type="text"
+      						placeholder={'Enter a ticker (ex. ' + this.state.exampleTickers[this.state.exampleTickerIndex] + ')'}
+      						value={this.state.tickerTextbox.value}
+      						onChange={this.handleChange}
+      						readOnly={this.state.tickerTextbox.readOnly} />
+
+      						<input type="submit" className="tickerSubmit" value={this.state.buttonText} />
+      						</form>
+      					</div>
+              </div>
+              <div className="pure-u-1 pure-u-sm-1-2">
+                <div className="padbox-right">
+                  <div className="infobox">
+                  <i class="fa fa-question-circle" aria-hidden="true"></i> <strong>Formatting Help</strong>
+                    <ul>
+                      <li>US Stocks must end with <strong>:US</strong> (ex. AMD:US / AAPL:US)</li>
+                      <li>CSE Stocks must end with <strong>:CNX</strong> (ex. LVI:CNX)</li>
+                      <li>Only companies listed on the TSXV are real time quotes</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 				</div>
 				<QuoteWrap
 					tickers={this.state.tickers}

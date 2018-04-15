@@ -3,12 +3,22 @@
 body{
 	margin:0;
 	padding:0;
-	font-size:16px;
+	font-size:15.5px;
 	font-family:"Roboto", arial, verdana, sans-serif;
 }
 
 .padbox{
 	padding:15px;
+}
+
+.padbox-left
+{
+	padding:15px 15px 15px 0;
+}
+
+.padbox-right
+{
+	padding:15px 0 15px 15px;
 }
 
 .header{
@@ -32,11 +42,13 @@ body{
 	display:show;
 }
 
-.add-ticker-form{
-	padding:15px;
+.input-area
+{
+	width:75vw;
 	margin:0 auto;
-	width:50vw;
 }
+
+
 a,a:hover,a:focus{
 	color:#555;
 	text-decoration:none;
@@ -72,7 +84,6 @@ form{
 	color:white;
 	font-size:125%;
 	font-weight:bold;
-	margin-top:15px;
 	padding:15px;
 	border:none;
 }
@@ -110,6 +121,15 @@ form{
 	font-size:105%;
 }
 
+.quoteBoxInfo{
+	position:relative;
+	top:2px;
+	padding:10px;
+	color:#777;
+	font-size:90%;
+	text-align:right;
+}
+
 .control{
 	display:inline-block;
 	padding-right:10px;
@@ -140,13 +160,25 @@ form{
 	color:white;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1024px) {
+	body{
+		font-size:13.5px;
+	}
+
+	.input-area{
+		width:100%;
+	}
+	.padbox-left,.padbox-right{
+		padding:15px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
 	body{
 		font-size:13px;
 	}
-	.add-ticker-form{
-		padding:15px;
-		margin:0 auto;
-		width:80vw;
+	.quoteBoxInfo,.quoteBoxTools{
+		text-align:center;
+		padding:10px;
 	}
 }

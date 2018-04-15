@@ -10,7 +10,8 @@ class QuoteBox extends React.Component {
 			pointgl: '',
 			volume: '',
 			loadMsg: 'Retrieving latest price',
-			loadClass: 'fa fa-refresh fa-spin'
+			loadClass: 'fa fa-refresh fa-spin',
+			realTime: ''
 		}
 	}
 
@@ -29,7 +30,8 @@ class QuoteBox extends React.Component {
 				 		pointgl: response.data.pointgl,
 				 		percentgl: response.data.percentgl,
 				 		loadMsg: '',
-				 		loadClass: 'fa fa-refresh'
+				 		loadClass: 'fa fa-refresh',
+						realTime: this.checkRealtime(ticker)
 				 	});
 			 	} else {
 			 		this.setState({
@@ -38,7 +40,8 @@ class QuoteBox extends React.Component {
 				 		pointgl: 0,
 				 		percentgl: 0,
 				 		loadMsg: '',
-				 		loadClass: 'fa fa-refresh'
+				 		loadClass: 'fa fa-refresh',
+						realTime: ''
 				 	});
 			 	}
 
@@ -48,7 +51,8 @@ class QuoteBox extends React.Component {
 			 	this.setState({
 			 		price: '???',
 			 		loadMsg: "An error occured:" + error,
-			 		loadClass: 'fa fa-refresh'
+			 		loadClass: 'fa fa-refresh',
+					realTime: ''
 			 	});
 			 });
 	}
@@ -91,10 +95,19 @@ class QuoteBox extends React.Component {
 		return '';
 	}
 
+	checkRealtime(ticker){
+		if(!ticker.includes(":")){
+			return true;
+		}
+
+		return false;
+	}
+
+
 
 	render() {
 		return (
-		<div className="pure-u-1 pure-u-md-1-3 pure-u-lg-1-4">
+		<div className="pure-u-1 pure-u-sm-1-2 pure-u-lg-1-3 pure-u-xl-1-4">
 		<div className="padbox">
 			<div className="quoteBox">
 				<div className="quoteBoxHead">
@@ -108,21 +121,34 @@ class QuoteBox extends React.Component {
 					</span>
 					</h3>
 				</div>
+
 				<div className="quoteBoxVol">
 				{'Volume: '}<span className="volume">{this.state.volume}</span>
 				</div>
-				<div className="quoteBoxTools">
-					<div className="control" onClick={()=> this.refreshQuotes(this.props.ticker)}>
-						<i className={this.state.loadClass}></i> {this.state.loadMsg}
+
+				<div className="pure-g">
+					<div className="pure-u-1 pure-u-md-1-2">
+						<div className="quoteBoxTools">
+							<div className="control" onClick={()=> this.refreshQuotes(this.props.ticker)}>
+								<i className={this.state.loadClass}></i> {this.state.loadMsg}
+							</div>
+							<div className="control"
+								onClick={()=> this.props.getTickerIndex(this.props.index)}>
+								<i className="fa fa-trash"></i>
+							</div>
+							<div className="control">
+								<a href={`https://web.tmxmoney.com/quote.php?qm_symbol=${this.props.ticker}`} target="_blank">
+									<i className="fa fa-external-link"></i>
+								</a>
+							</div>
+						</div>
 					</div>
-					<div className="control"
-						onClick={()=> this.props.getTickerIndex(this.props.index)}>
-						<i className="fa fa-trash"></i>
-					</div>
-					<div className="control">
-						<a href={`https://web.tmxmoney.com/quote.php?qm_symbol=${this.props.ticker}`} target="_blank">
-							<i className="fa fa-external-link"></i>
-						</a>
+
+					<div className="pure-u-1 pure-u-md-1-2">
+						<div className="quoteBoxInfo">
+						<i className={this.state.realTime ? 'fa fa-flash' : 'fa fa-warning'} aria-hidden="true"></i>&nbsp;
+					  {this.state.realTime ? 'Realtime' : 'Delayed (15min)'}
+						</div>
 					</div>
 				</div>
 			</div>
