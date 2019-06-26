@@ -4,7 +4,8 @@ import QuoteWrap from "./Components/QuoteWrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faExclamationTriangle,
-  faQuestionCircle
+  faQuestionCircle,
+  faChartLine
 } from "@fortawesome/free-solid-svg-icons";
 
 class App extends Component {
@@ -157,6 +158,11 @@ class App extends Component {
         <div className={this.state.errorClass}>
           <FontAwesomeIcon icon={faExclamationTriangle} />{" "}
           {"Couldn't find ticker"}
+        </div>
+        <div className="logoheading">
+          <h1>
+            <FontAwesomeIcon icon={faChartLine} /> Stock Tracker
+          </h1>
         </div>
         <div className="header">
           <div className="input-area">

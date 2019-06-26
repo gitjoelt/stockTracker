@@ -7,6 +7,20 @@ body {
   font-family: "Roboto", arial, verdana, sans-serif;
 }
 
+.logoheading {
+  max-width: 100%;
+  background: #1fbe5b;
+  text-align: center;
+  padding: 15px;
+}
+
+.logoheading h1 {
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
 .padbox {
   padding: 15px;
 }
@@ -78,7 +92,7 @@ form {
 
 .tickerSubmit {
   width: 100%;
-  background: #1fbe5b;
+  background: #333;
   color: white;
   font-size: 125%;
   font-weight: bold;
@@ -93,15 +107,24 @@ form {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-.quoteBoxHead {
+.quoteBoxMain {
   background: #333;
-  padding: 10px;
+  padding: 30px 15px;
+  text-align: center;
 }
-.quoteBoxHead h3 {
-  font-size: 140%;
-  padding: 0;
+.quoteBoxMain h3 {
+  font-size: 1.8em;
+  padding: 0 0 15px;
   margin: 0;
   color: white;
+}
+
+h3.volumeDisplay {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #ccc;
+  padding: 0;
+  margin: 0;
 }
 
 .quoteBoxVol {
@@ -118,19 +141,36 @@ form {
   font-size: 105%;
 }
 
-.quoteBoxInfo {
+.quoteBoxTicker {
   position: relative;
   top: 2px;
   padding: 10px;
   color: #777;
-  font-size: 90%;
+  font-size: 1.3em;
+}
+
+.quoteBoxStatus {
+  position: relative;
+  top: 5px;
+  padding: 10px;
+  color: #777;
+  font-size: 1em;
   text-align: right;
 }
 
-.control {
-  display: inline-block;
-  padding-right: 10px;
+.tickerName {
+  font-weight: bold;
+}
+
+.control,
+.control:focus {
   cursor: pointer;
+  color: #777;
+  text-decoration: none;
+  display: inline-block;
+}
+.control:hover {
+  color: #444;
 }
 
 .green {
@@ -175,9 +215,12 @@ form {
   body {
     font-size: 13px;
   }
-  .quoteBoxInfo,
-  .quoteBoxTools {
+  .quoteBoxTicker {
     text-align: center;
-    padding: 10px;
+  }
+
+  .quoteBoxStatus {
+    text-align: center;
+    position: static;
   }
 }

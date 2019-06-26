@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faExternalLinkAlt,
+  faTimesCircle,
   faSyncAlt,
   faLongArrowAltUp,
   faLongArrowAltDown,
-  faBolt,
-  faExclamationTriangle,
-  faTrash
+  faChartArea
 } from "@fortawesome/free-solid-svg-icons";
 
 class QuoteBox extends Component {
@@ -33,7 +31,7 @@ class QuoteBox extends Component {
       .then(response => {
         if (response.data.price) {
           this.setState({
-            price: "$" + response.data.price,
+            price: response.data.price,
             volume: response.data.volume,
             pointgl: response.data.pointgl,
             percentgl: response.data.percentgl,
@@ -113,31 +111,72 @@ class QuoteBox extends Component {
     return false;
   }
 
+  abbreviateVolume(value) {
+    var newValue = value;
+    if (value >= 1000) {
+      var suffixes = ["", "k", "m", "b", "t"];
+      var suffixNum = Math.floor(("" + value).length / 3);
+      var shortValue = "";
+      for (var precision = 2; precision >= 1; precision--) {
+        shortValue = parseFloat(
+          (suffixNum != 0
+            ? value / Math.pow(1000, suffixNum)
+            : value
+          ).toPrecision(precision)
+        );
+        var dotLessShortValue = (shortValue + "").replace(
+          /[^a-zA-Z 0-9]+/g,
+          ""
+        );
+        if (dotLessShortValue.length <= 2) {
+          break;
+        }
+      }
+      if (shortValue % 1 != 0) {
+        var shortNum;
+        shortNum = shortValue.toFixed(1);
+      }
+      newValue = shortValue + suffixes[suffixNum];
+    }
+    return newValue;
+  }
+
   render() {
+    let displayVolume = null;
+    if (this.state.volume) {
+      displayVolume = (
+        <h3 className="volumeDisplay">
+          <FontAwesomeIcon icon={faChartArea} />{" "}
+          {this.abbreviateVolume(parseInt(this.state.volume.replace(",", "")))}
+        </h3>
+      );
+    }
+
     return (
       <div className="pure-u-1 pure-u-sm-1-2 pure-u-lg-1-3 pure-u-xl-1-4">
         <div className="padbox">
           <div className="quoteBox">
-            <div className="quoteBoxHead">
-              <h3>
-                <span className={this.setColor(this.state.pointgl)}>
-                  <FontAwesomeIcon icon={this.setArrow(this.state.pointgl)} />
-                </span>
-                &nbsp;{this.props.ticker}&nbsp;
-                <span className={this.setColor(this.state.pointgl)}>
-                  {this.state.price} ({this.state.percentgl}%)
-                </span>
-              </h3>
-            </div>
-
-            <div className="quoteBoxVol">
-              {"Volume: "}
-              <span className="volume">{this.state.volume}</span>
-            </div>
-
             <div className="pure-g">
-              <div className="pure-u-1 pure-u-md-1-2">
-                <div className="quoteBoxTools">
+              <div className="pure-u-1 pure-u-sm-1-2">
+                <div className="quoteBoxTicker">
+                  <div
+                    className="control"
+                    onClick={() => this.props.delete(this.props.index)}
+                  >
+                    <FontAwesomeIcon icon={faTimesCircle} />
+                  </div>{" "}
+                  <a
+                    className="control tickerName"
+                    href={`https://web.tmxmoney.com/quote.php?qm_symbol=${this.props.ticker}`}
+                    target="_blank"
+                  >
+                    {this.props.ticker}
+                  </a>
+                </div>
+              </div>
+
+              <div className="pure-u-1 pure-u-sm-1-2">
+                <div className="quoteBoxStatus">
                   <div
                     className="control"
                     onClick={() => this.refreshQuotes(this.props.ticker)}
@@ -145,35 +184,23 @@ class QuoteBox extends Component {
                     <FontAwesomeIcon
                       icon={this.state.loadClass}
                       spin={this.state.spin}
-                    />{" "}
-                    {this.state.loadMsg}
-                  </div>
-                  <div
-                    className="control"
-                    onClick={() => this.props.delete(this.props.index)}
-                  >
-                    <FontAwesomeIcon icon={faTrash} />
-                  </div>
-                  <div className="control">
-                    <a
-                      href={`https://web.tmxmoney.com/quote.php?qm_symbol=${this.props.ticker}`}
-                      target="_blank"
-                    >
-                      <FontAwesomeIcon icon={faExternalLinkAlt} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pure-u-1 pure-u-md-1-2">
-                <div className="quoteBoxInfo">
-                  <FontAwesomeIcon
-                    icon={this.state.realTime ? faBolt : faExclamationTriangle}
-                  />
-                  &nbsp;
+                    />
+                  </div>{" "}
                   {this.state.realTime ? "Realtime" : "Delayed (15min)"}
                 </div>
               </div>
+            </div>
+            <div className="quoteBoxMain">
+              <h3>
+                <span className={this.setColor(this.state.pointgl)}>
+                  <FontAwesomeIcon icon={this.setArrow(this.state.pointgl)} />{" "}
+                </span>
+                {this.state.price}{" "}
+                <span className={this.setColor(this.state.pointgl)}>
+                  ({this.state.percentgl}%)
+                </span>
+              </h3>
+              {displayVolume}
             </div>
           </div>
         </div>
