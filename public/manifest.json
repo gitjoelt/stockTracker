@@ -1,7 +1,7 @@
 {
-  "short_name": "Stock Tracker",
+  "short_name": "stockTracker",
   "name": "Stock Tracker",
-  "start_url": "./index.html",
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
