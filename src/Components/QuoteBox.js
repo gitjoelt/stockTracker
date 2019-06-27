@@ -114,7 +114,7 @@ class QuoteBox extends Component {
   abbreviateVolume(value) {
     var newValue = value;
     if (value >= 1000) {
-      var suffixes = ["", "k", "m", "b", "t"];
+      var suffixes = ["", "K", "M", "B", "T"];
       var suffixNum = Math.floor(("" + value).length / 3);
       var shortValue = "";
       for (var precision = 2; precision >= 1; precision--) {
@@ -156,7 +156,7 @@ class QuoteBox extends Component {
       <div className="pure-u-1 pure-u-sm-1-2 pure-u-lg-1-3 pure-u-xl-1-4">
         <div className="padbox">
           <div className="quoteBox">
-            <div className="pure-g">
+            <div className="pure-g quoteBoxTop">
               <div className="pure-u-1 pure-u-sm-1-2">
                 <div className="quoteBoxTicker">
                   <div
