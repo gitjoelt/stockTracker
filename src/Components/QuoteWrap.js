@@ -1,31 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 import QuoteBox from "./QuoteBox";
 
-class QuoteWrap extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  deleteQuoteBoxHandler = tickerIndex => {
-    this.props.deleteQuoteBox(tickerIndex);
+const QuoteWrap = props => {
+  const deleteQuoteBoxHandler = tickerIndex => {
+    props.deleteQuoteBox(tickerIndex);
   };
 
-  render() {
-    return (
-      <div className="pure-g">
-        {this.props.tickers.map(ticker => {
-          return (
-            <QuoteBox
-              ticker={ticker.ticker}
-              key={ticker.key}
-              index={ticker.key}
-              delete={this.deleteQuoteBoxHandler}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="pure-g">
+      {props.tickers.map(ticker => {
+        return (
+          <QuoteBox
+            ticker={ticker.ticker}
+            key={ticker.key}
+            index={ticker.key}
+            delete={deleteQuoteBoxHandler}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 export default QuoteWrap;

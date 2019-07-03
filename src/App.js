@@ -18,7 +18,7 @@ class App extends Component {
         : [],
       errorClass: "errorHeader hide",
       buttonText: "Add Ticker",
-      exampleTickers: ["WEED", "AMD:US", "LVI:CNX", "RHT"],
+      exampleTickers: ["WEED", "AMD:US", "SQ:US", "RHT"],
       exampleTickerIndex: 0
     };
 

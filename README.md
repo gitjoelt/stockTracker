@@ -29,3 +29,8 @@ To build the application type
 ```
 npm run build
 ```
+
+## Requirements
+
+npm >= 6.9.0
+node >= 12.6.0
