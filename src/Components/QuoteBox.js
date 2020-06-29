@@ -27,7 +27,7 @@ class QuoteBox extends Component {
     console.log(`Refreshing Quote: ${ticker}`);
     this.setLoadMsg();
     axios
-      .get(`https://shoogibot.xyz/bot/tmxcustomapi.php?ticker=${ticker}`)
+      .get(`https://tmxapi.herokuapp.com/${ticker}`)
       .then(response => {
         if (response.data.price) {
           this.setState({

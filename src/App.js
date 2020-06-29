@@ -78,7 +78,7 @@ class App extends Component {
     });
 
     axios
-      .get(`https://shoogibot.xyz/bot/tmxcustomapi.php?ticker=${ticker}`)
+      .get(`https://tmxapi.herokuapp.com/${ticker}`)
       .then(response => {
         if (response.data.price) {
           callback(true);
