@@ -1,7 +1,7 @@
 {
   "name": "stocktracker",
   "version": "0.1.0",
-  "homepage": "https://joeltersigni.com/stockTracker",
+  "homepage": "https://tmxquotes.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
