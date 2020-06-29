@@ -204,11 +204,8 @@ class App extends Component {
                         / AAPL:US)
                       </li>
                       <li>
-                        CSE Stocks must end with <strong>:CNX</strong> (ex.
-                        LVI:CNX)
-                      </li>
-                      <li>
-                        Only companies listed on the TSXV are real time quotes
+                        Data provided by tmxmoney.com (if you can search it
+                        there, it should work here under the same ticker)
                       </li>
                     </ul>
                   </div>
