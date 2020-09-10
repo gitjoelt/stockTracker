@@ -153,7 +153,7 @@ class QuoteBox extends Component {
       );
     }
     let displayMarketPhase = null;
-    if (this.state.marketState !== "OPEN") {
+    if (this.state.marketState !== "Open") {
       displayMarketPhase = (
         <h3 className="marketState">
           {this.state.marketState}
