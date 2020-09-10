@@ -32,6 +32,8 @@ class QuoteBox extends Component {
         if (response.data.price) {
           this.setState({
             price: response.data.price,
+            currency: response.data.currency,
+            marketState: response.data.marketState,
             volume: response.data.volume,
             pointgl: response.data.pointgl,
             percentgl: response.data.percentgl,
@@ -146,8 +148,15 @@ class QuoteBox extends Component {
     if (this.state.volume) {
       displayVolume = (
         <h3 className="volumeDisplay">
-          <FontAwesomeIcon icon={faChartArea} />{" "}
-          {this.abbreviateVolume(parseInt(this.state.volume.replace(",", "")))}
+          {this.state.currency}
+        </h3>
+      );
+    }
+    let displayMarketPhase = null;
+    if (this.state.marketState !== "OPEN") {
+      displayMarketPhase = (
+        <h3 className="marketState">
+          {this.state.marketState}
         </h3>
       );
     }
@@ -191,6 +200,7 @@ class QuoteBox extends Component {
               </div>
             </div>
             <div className="quoteBoxMain">
+            {displayMarketPhase}
               <h3>
                 <span className={this.setColor(this.state.pointgl)}>
                   <FontAwesomeIcon icon={this.setArrow(this.state.pointgl)} />{" "}
@@ -201,6 +211,8 @@ class QuoteBox extends Component {
                 </span>
               </h3>
               {displayVolume}
+      
+              
             </div>
           </div>
         </div>

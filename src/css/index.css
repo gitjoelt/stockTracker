@@ -130,8 +130,15 @@ form {
   color: white;
 }
 
+h3.marketState {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #ccc;
+  padding-bottom: 15px;
+  margin: 0;
+}
 h3.volumeDisplay {
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: bold;
   color: #ccc;
   padding: 0;

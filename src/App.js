@@ -18,7 +18,7 @@ class App extends Component {
         : [],
       errorClass: "errorHeader hide",
       buttonText: "Add Ticker",
-      exampleTickers: ["WEED", "AMD:US", "SQ:US", "RHT"],
+      exampleTickers: ["AAPL", "AMD", "ATZ.TO", "VERY.CN"],
       exampleTickerIndex: 0
     };
 
@@ -200,11 +200,11 @@ class App extends Component {
                     <strong>Formatting Help</strong>
                     <ul>
                       <li>
-                        US Stocks must end with <strong>:US</strong> (ex. AMD:US
-                        / AAPL:US)
+                        Canadian Stocks must end with <strong>.TO</strong> on TSX/TSXV or .CN for CSE (ex. ATZ.TO
+                        / VERY.CN)
                       </li>
                       <li>
-                        Data provided by tmxmoney.com (if you can search it
+                        Data provided by yahoo finance (if you can search it
                         there, it should work here under the same ticker)
                       </li>
                     </ul>
