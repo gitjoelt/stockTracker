@@ -32,6 +32,8 @@ class QuoteBox extends Component {
         if (response.data.price) {
           this.setState({
             price: response.data.price,
+            longName: response.data.name,
+            exchange: response.data.exchange,
             currency: response.data.currency,
             marketState: response.data.marketState,
             volume: response.data.volume,
@@ -148,7 +150,7 @@ class QuoteBox extends Component {
     if (this.state.volume) {
       displayVolume = (
         <h3 className="volumeDisplay">
-          {this.state.currency}
+          {this.state.exchange} / {this.state.currency}
         </h3>
       );
     }
@@ -198,6 +200,9 @@ class QuoteBox extends Component {
                   {this.state.realTime ? "Realtime" : "Delayed (15min)"}
                 </div>
               </div>
+            </div>
+            <div className="quoteBoxName">
+              <h3>{this.state.longName}</h3>
             </div>
             <div className="quoteBoxMain">
             {displayMarketPhase}
