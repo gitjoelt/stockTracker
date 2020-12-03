@@ -31,7 +31,7 @@ class QuoteBox extends Component {
       .then((response) => {
         if (response.data.price) {
           this.setState({
-            price: response.data.price,
+            price: parseFloat(response.data.price).toFixed(2),
             longName: response.data.name,
             exchange: response.data.exchange,
             currency: response.data.currency,
