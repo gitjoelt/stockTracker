@@ -178,9 +178,9 @@ class QuoteBox extends Component {
             href={`https://finance.yahoo.com/quote/${this.props.ticker}`}
             target="_blank"
           >
-            {this.state.longName}{" "}
-            <span className="tickerSymbol">{this.props.ticker}</span>
+            {this.state.longName}
           </a>
+          <span className="tickerSymbol">{" "} {this.props.ticker}</span>
         </td>
         <td>
           <div className="cb-price">

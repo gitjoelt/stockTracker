@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const QuoteWrap = (props) => {
+
   const deleteQuoteBoxHandler = (tickerIndex) => {
     props.deleteQuoteBox(tickerIndex);
   };
