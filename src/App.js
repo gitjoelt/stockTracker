@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faExclamationTriangle,
   faQuestionCircle,
-  faChartLine
+  faChartLine,
 } from "@fortawesome/free-solid-svg-icons";
 
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
       errorClass: "errorHeader hide",
       buttonText: "Add Ticker",
       exampleTickers: ["AAPL", "AMD", "ATZ.TO", "VERY.CN"],
-      exampleTickerIndex: 0
+      exampleTickerIndex: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,7 +32,7 @@ class App extends Component {
       this.setState({
         exampleTickerIndex: this.refreshExampleTickers(
           this.state.exampleTickerIndex
-        )
+        ),
       });
     }, 3000);
   }
@@ -71,22 +71,22 @@ class App extends Component {
       tickerTextbox: {
         value: this.state.tickerTextbox.value,
         readOnly: true,
-        style: "tickerInput tickerInputLoading"
+        style: "tickerInput tickerInputLoading",
       },
       buttonText: "Looking up " + ticker,
-      errorClass: "errorHeader hide"
+      errorClass: "errorHeader hide",
     });
 
     axios
       .get(`https://tmxapi.herokuapp.com/${ticker}`)
-      .then(response => {
+      .then((response) => {
         if (response.data.price) {
           callback(true);
         } else {
           callback(false);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         return callback(false);
       });
   }
@@ -96,38 +96,38 @@ class App extends Component {
       tickerTextbox: {
         value: event.target.value.toUpperCase(),
         readOnly: false,
-        style: "tickerInput"
-      }
+        style: "tickerInput",
+      },
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.isValidTicker(this.state.tickerTextbox.value, isValid => {
+    this.isValidTicker(this.state.tickerTextbox.value, (isValid) => {
       if (isValid) {
         let tickerArr = this.state.tickers;
         tickerArr.push({
           ticker: this.state.tickerTextbox.value,
           key: localStorage.getItem("LS_count")
             ? localStorage.getItem("LS_count")
-            : 0
+            : 0,
         });
         tickerArr.sort(this.sortTickersAlpha);
         this.editLocalStorage(tickerArr, false);
         this.setState({
           tickerTextbox: { value: "", readOnly: false, style: "tickerInput" },
           tickers: tickerArr,
-          buttonText: "Add Ticker"
+          buttonText: "Add Ticker",
         });
       } else {
         this.setState({
           tickerTextbox: {
             value: this.state.tickerTextbox.value,
             readOnly: false,
-            style: "tickerInput"
+            style: "tickerInput",
           },
           errorClass: "errorHeader show",
-          buttonText: "Add Ticker"
+          buttonText: "Add Ticker",
         });
       }
     });
@@ -144,7 +144,9 @@ class App extends Component {
   deleteQuoteBox(tickerIndex) {
     this.setState(
       {
-        tickers: this.state.tickers.filter(ticker => tickerIndex !== ticker.key)
+        tickers: this.state.tickers.filter(
+          (ticker) => tickerIndex !== ticker.key
+        ),
       },
       () => {
         this.editLocalStorage(this.state.tickers, true);
@@ -200,8 +202,8 @@ class App extends Component {
                     <strong>Formatting Help</strong>
                     <ul>
                       <li>
-                        Canadian Stocks must end with <strong>.TO</strong> on TSX/TSXV or .CN for CSE (ex. ATZ.TO
-                        / VERY.CN)
+                        Canadian Stocks must end with <strong>.TO</strong> on
+                        TSX/TSXV or .CN for CSE (ex. ATZ.TO / VERY.CN)
                       </li>
                       <li>
                         Data provided by yahoo finance (if you can search it

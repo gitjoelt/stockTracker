@@ -6,7 +6,7 @@ import {
   faSyncAlt,
   faLongArrowAltUp,
   faLongArrowAltDown,
-  faChartArea
+  faChartArea,
 } from "@fortawesome/free-solid-svg-icons";
 
 class QuoteBox extends Component {
@@ -19,7 +19,7 @@ class QuoteBox extends Component {
       loadMsg: "Retrieving latest price",
       loadClass: faSyncAlt,
       spin: true,
-      realTime: ""
+      realTime: "",
     };
   }
 
@@ -28,7 +28,7 @@ class QuoteBox extends Component {
     this.setLoadMsg();
     axios
       .get(`https://tmxapi.herokuapp.com/${ticker}`)
-      .then(response => {
+      .then((response) => {
         if (response.data.price) {
           this.setState({
             price: response.data.price,
@@ -42,7 +42,7 @@ class QuoteBox extends Component {
             loadMsg: "",
             loadClass: faSyncAlt,
             spin: false,
-            realTime: this.checkRealtime(ticker)
+            realTime: this.checkRealtime(ticker),
           });
         } else {
           this.setState({
@@ -53,18 +53,18 @@ class QuoteBox extends Component {
             loadMsg: "",
             loadClass: faSyncAlt,
             spin: false,
-            realTime: ""
+            realTime: "",
           });
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         this.setState({
           price: "???",
           loadMsg: "An error occured:" + error,
           loadClass: faSyncAlt,
           spin: false,
-          realTime: ""
+          realTime: "",
         });
       });
   }
@@ -84,7 +84,7 @@ class QuoteBox extends Component {
     this.setState({
       loadMsg: "",
       loadClass: faSyncAlt,
-      spin: true
+      spin: true,
     });
   }
 
@@ -157,71 +157,55 @@ class QuoteBox extends Component {
     let displayMarketPhase = null;
     if (this.state.marketState !== "Open") {
       displayMarketPhase = (
-        <h3 className="marketState">
-          {this.state.marketState}
-        </h3>
+        <h3 className="marketState">{this.state.marketState}</h3>
       );
     }
 
     return (
-      <div className="pure-u-1 pure-u-sm-1-2 pure-u-lg-1-3 pure-u-xl-1-4">
-        <div className="padbox">
-          <div className="quoteBox">
-            <div className="pure-g quoteBoxTop">
-              <div className="pure-u-1 pure-u-sm-1-2">
-                <div className="quoteBoxTicker">
-                  <div
-                    className="control"
-                    onClick={() => this.props.delete(this.props.index)}
-                  >
-                    <FontAwesomeIcon icon={faTimesCircle} />
-                  </div>{" "}
-                  <a
-                    className="control tickerName"
-                    href={`https://web.tmxmoney.com/quote.php?qm_symbol=${this.props.ticker}`}
-                    target="_blank"
-                  >
-                    {this.props.ticker}
-                  </a>
-                </div>
-              </div>
-
-              <div className="pure-u-1 pure-u-sm-1-2">
-                <div className="quoteBoxStatus">
-                  <div
-                    className="control"
-                    onClick={() => this.refreshQuotes(this.props.ticker)}
-                  >
-                    <FontAwesomeIcon
-                      icon={this.state.loadClass}
-                      spin={this.state.spin}
-                    />
-                  </div>{" "}
-                  {this.state.realTime ? "Realtime" : "Delayed (15min)"}
-                </div>
-              </div>
-            </div>
-            <div className="quoteBoxName">
-              <h3>{this.state.longName}</h3>
-            </div>
-            <div className="quoteBoxMain">
-            {displayMarketPhase}
-              <h3>
-                <span className={this.setColor(this.state.pointgl)}>
-                  <FontAwesomeIcon icon={this.setArrow(this.state.pointgl)} />{" "}
-                </span>
-                {this.state.price}{" "}
-                <span className={this.setColor(this.state.pointgl)}>
-                  ({this.state.percentgl}%)
-                </span>
-              </h3>
-              {displayVolume}
-      
-              
-            </div>
+      <tr>
+        <td></td>
+        <td>
+          <div
+            className="control"
+            onClick={() => this.props.delete(this.props.index)}
+          >
+            <FontAwesomeIcon icon={faTimesCircle} />
           </div>
-        </div>
-      </div>
+        </td>
+        <td>
+          <a
+            className="control tickerName"
+            href={`https://finance.yahoo.com/quote/${this.props.ticker}`}
+            target="_blank"
+          >
+            {this.state.longName}{" "}
+            <span className="tickerSymbol">{this.props.ticker}</span>
+          </a>
+        </td>
+        <td>
+          <div className="cb-price">
+            <span className={this.setColor(this.state.pointgl)}>
+              <FontAwesomeIcon icon={this.setArrow(this.state.pointgl)} />{" "}
+            </span>
+            {this.state.price}{" "}
+            <span className={this.setColor(this.state.pointgl)}>
+              ({this.state.percentgl}%)
+            </span>
+          </div>
+        </td>
+        <td>{this.state.currency}</td>
+        <td>
+          <div
+            className="control"
+            onClick={() => this.refreshQuotes(this.props.ticker)}
+          >
+            <FontAwesomeIcon
+              icon={this.state.loadClass}
+              spin={this.state.spin}
+            />
+          </div>
+        </td>
+      </tr>
     );
   }
 }

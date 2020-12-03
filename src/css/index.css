@@ -195,23 +195,35 @@ h3.volumeDisplay {
 }
 
 .tickerName {
-  font-weight: bold;
-  color: white !important;
+  font-family: "Graphik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  line-height: 1.3;
+  color: rgb(5, 15, 25) !important;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.tickerSymbol {
+  font-family: "Graphik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  line-height: 1.3;
+  color: rgba(17, 51, 83, 0.6) !important;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .control,
 .control:focus {
   cursor: pointer;
-  color: #ccc;
+  color: rgba(17, 51, 83, 0.6);
   text-decoration: none;
   display: inline-block;
 }
-.control:hover {
-  color: white;
-}
 
 .green {
-  color: #24d61b;
+  color: rgb(5, 177, 105);
 }
 
 .red {
@@ -232,6 +244,108 @@ h3.volumeDisplay {
 .volume {
   font-weight: bold;
   color: white;
+}
+
+.cb-table-section {
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+  margin: 25px auto;
+  flex-direction: column;
+  padding: 0px;
+  max-width: 1200px;
+  border: 1px solid rgb(236, 239, 241);
+  border-radius: 4px;
+  box-shadow: rgba(17, 51, 83, 0.02) 0px 4px 12px 0;
+}
+
+.cb-div {
+  width: 100%;
+}
+
+.cb-table {
+  width: 100%;
+  padding: 0px;
+  background: rgb(255, 255, 255);
+  border-spacing: 0px;
+  border-collapse: separate;
+  caption-side: top;
+  font-family: "Graphik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.cb-table thead {
+  border: none;
+}
+
+.cb-table thead tr {
+  border-bottom: 1px solid rgb(236, 239, 241);
+}
+
+.cb-table thead th:first-child {
+  padding-left: 32px;
+}
+.cb-table thead th {
+  padding: 16px 16px 16px 0px;
+  text-align: left;
+  font-family: "Graphik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(17, 51, 83, 0.6);
+  transition: color 80ms ease-in-out 0s;
+}
+
+.cb-table tbody {
+  padding: 0px;
+  border: none;
+  transition: opacity 300ms ease 0s;
+}
+
+.cb-table tbody tr {
+  background: rgb(255, 255, 255);
+  user-select: none;
+}
+
+.cb-table tbody td {
+  padding: 14px 48px 14px 0px;
+  border-top: 1px solid rgb(236, 239, 241);
+  cursor: default;
+  position: relative;
+}
+
+.cb-price {
+  font-family: "Graphik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  line-height: 1.3;
+  color: rgb(5, 15, 25);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.cb-table .centerit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  height: 100%;
+  top: 0px;
+  opacity: 0;
+  padding: inherit;
+  transition: opacity 0.25s ease 0s;
+}
+.cb-table .centeritem {
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin-left: -6px;
+  color: black !important;
 }
 
 @media only screen and (max-width: 1024px) {
